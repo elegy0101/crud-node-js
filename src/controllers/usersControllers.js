@@ -1,5 +1,5 @@
-const connection = require('../database').getConnection()
-const User = require('../database/models/usersModel')(connection)
+const { getModel } = require('../database')
+const User = getModel('User')
 
 async function getUsers (req, res) {
     const users = await User.findAll({})
@@ -23,7 +23,7 @@ async function updateUsers (req, res) {
         const { id } = req.params
         const user = await User.findOne({ where: { id }})
         if(!user) {
-            res.status(400).send('User not found!')
+            res.status(404).send('User not found!')
             return
         }
         user.name = req.body.name

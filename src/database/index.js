@@ -1,19 +1,29 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-let connection
+const db = { connection: false }
 
 function getConnection () {
-    if(connection) {
-        return connection
+    if(db.connection) {
+        return db
     }
-    connection = new Sequelize('training', 'root', 'admin', {
+    db.connection = new Sequelize('training', 'root', 'admin', {
         host: 'localhost',
         dialect: 'mysql'
     });
-    require('./models/usersModel')(connection)
-    return connection
+    db.models = {
+    User: require('./models/usersModel')(db.connection)
+    }
+    return db
+}
+
+function getModel (modelName) {
+    getConnection()
+    const model = db.models[modelName]
+    if(model === undefined) throw new Error('Unable to load model!')
+    return model
 }
 
 module.exports = {
-    getConnection
+    getConnection,
+    getModel
 }
