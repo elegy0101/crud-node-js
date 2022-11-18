@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "nodemon script.js",
+    "wait-for-mysql": "wait-for-mysql --username=admin --password=admin -D 'training'",
     "test": "jest tests",
     "test:watch": "npm test --watchAll"
   },
@@ -14,7 +15,8 @@
   "devDependencies": {
     "jest": "^29.3.1",
     "nodemon": "^2.0.20",
-    "supertest": "^6.3.1"
+    "supertest": "^6.3.1",
+    "wait-for-mysql": "^1.0.0"
   },
   "dependencies": {
     "body-parser": "^1.20.1",
