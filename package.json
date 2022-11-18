@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon script.js",
     "wait-for-mysql": "wait-for-mysql --username=admin --password=admin -D 'training'",
+    "storage": "docker-compose up -d",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:generate": "npx sequelize-cli migration:generate --name",
     "test": "jest -i --forceExit tests",
