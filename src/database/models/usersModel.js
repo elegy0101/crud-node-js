@@ -1,9 +1,9 @@
-const { DataTypes } = require('sequelize')
 
+const { DataTypes } = require('sequelize')
 
 module.exports = (connection) => {
     const User = connection.define('User', {
-        // Model attributes
+        // Model attributes are defined here
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -11,6 +11,8 @@ module.exports = (connection) => {
         email: {
             type: DataTypes.STRING
         }
-    }, {});
+    }, {
+        underscored: true
+    });
     return User
 }
