@@ -4,7 +4,7 @@ const app = require('./app')
 const port = 3000
 
 app.listen(port, async () => {
-    const connection = getConnection()
+    const { connection } = getConnection()
     await connection.sync({})
     console.log(`Example app listening on port ${port}`)
 })
